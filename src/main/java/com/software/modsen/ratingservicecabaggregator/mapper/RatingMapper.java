@@ -8,7 +8,6 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface RatingMapper {
     RatingResponse ratingToRatingResponse(Rating rating);
-
     Rating ratingRequestToRating(RatingRequest request);
 
 }
