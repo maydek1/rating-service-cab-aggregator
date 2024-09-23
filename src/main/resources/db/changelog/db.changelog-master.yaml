@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: maydek
+      changes:
+        - createTable:
+            tableName: rating
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: ride_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: comment
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: true
+              - column:
+                  name: rate
+                  type: INT
+                  constraints:
+                    nullable: false
