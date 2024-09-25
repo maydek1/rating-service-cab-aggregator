@@ -16,5 +16,4 @@ public class Rating{
     private Long rideId;
     private String comment;
     private int rate;
-
 }

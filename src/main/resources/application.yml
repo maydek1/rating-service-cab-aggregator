@@ -12,3 +12,7 @@ spring:
     name: RatingService
 server:
   port: 4569
+
+ride-service:
+  name: ride-service
+  url: http://localhost:4568/ride
