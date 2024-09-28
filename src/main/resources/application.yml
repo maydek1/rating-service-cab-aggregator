@@ -15,4 +15,10 @@ server:
 
 ride-service:
   name: ride-service
-  url: http://localhost:4568/ride
+  url: http://RideService:4568/ride
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
