@@ -10,9 +10,8 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@FeignClient(name = "${ride-service.name}", url = "${ride-service.url}", configuration = FeignConfig.class)
+@FeignClient(name = "${ride-service.name}", path = "${ride-service.path}", configuration = FeignConfig.class)
 public interface RideClient {
-
     @GetMapping("/{id}")
     ResponseEntity<RideResponse> getRide(@PathVariable Long id);
 
