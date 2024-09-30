@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/ratingDB
+    url: jdbc:postgresql://my_postgres:5432/ratingDB
     username: postgres
     password: 123
   jpa:
@@ -14,11 +14,19 @@ server:
   port: 4569
 
 ride-service:
-  name: ride-service
-  url: http://RideService:4568/ride
+  name: RideService
+  url: http://RideService:4568/ride  
+  path: /api/v1/ride                   
 
 springdoc:
   api-docs:
     enabled: true
   swagger-ui:
     enabled: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka:8761/eureka/
+  instance:
+    preferIpAddress: true
