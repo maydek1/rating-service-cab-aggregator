@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: rating-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/test_db
+    username: postgres
+    password: 123
+  liquibase:
+    enabled: false
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+
