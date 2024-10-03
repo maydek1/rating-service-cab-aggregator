@@ -19,7 +19,14 @@ server:
 
 ride-service:
   name: RideService
-  path: /api/v1/ride
+  url: http://RideService:4568/ride  
+  path: /api/v1/ride                   
+
+springdoc:
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
 
 eureka:
   client:
@@ -43,3 +50,4 @@ resilience4j:
         failure-rate-threshold: 75
         wait-duration-in-open-state: 10000
         permitted-number-of-calls-in-half-open-state: 3
+
