@@ -10,6 +10,10 @@ spring:
     change-log: classpath:db/changelog/db.changelog-master.yaml
   application:
     name: RatingService
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
 server:
   port: 4569
 
@@ -28,7 +32,13 @@ resilience4j:
   circuitbreaker:
     instances:
       rideService:
-        sliding-window-size: 20
+        sliding-window-size: 100
+        minimum-number-of-calls: 10
+        failure-rate-threshold: 75
+        wait-duration-in-open-state: 10000
+        permitted-number-of-calls-in-half-open-state: 3
+      driverService:
+        sliding-window-size: 100
         minimum-number-of-calls: 10
         failure-rate-threshold: 75
         wait-duration-in-open-state: 10000
