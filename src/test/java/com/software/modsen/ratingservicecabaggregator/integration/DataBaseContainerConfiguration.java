@@ -1,14 +1,12 @@
 package com.software.modsen.ratingservicecabaggregator.integration;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.testcontainers.containers.PostgreSQLContainer;
 import org.testcontainers.junit.jupiter.Container;
-import org.testcontainers.utility.DockerImageName;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.utility.DockerImageName;
 
 @Testcontainers
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -28,13 +26,4 @@ public class DataBaseContainerConfiguration {
         registry.add("spring.datasource.driver-class-name", postgreSQL::getDriverClassName);
     }
 
-    @BeforeAll
-    static void startContainer() {
-        postgreSQL.start();
-    }
-
-    @AfterAll
-    static void stopContainer() {
-        postgreSQL.stop();
-    }
 }

@@ -1,10 +1,7 @@
 spring:
   application:
     name: rating-service
-  datasource:
-    url: jdbc:postgresql://localhost:5432/test_db
-    username: postgres
-    password: 123
+
   liquibase:
     enabled: false
 

@@ -9,6 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 @Getter
 @Setter
+@ToString
 public class Rating{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,4 +17,9 @@ public class Rating{
     private Long rideId;
     private String comment;
     private int rate;
+
+    public Rating(int rate, Long rideId) {
+        this.rate = rate;
+        this.rideId = rideId;
+    }
 }
