@@ -13,8 +13,13 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(ServiceUnavailableException.class)
+    public ResponseEntity<String> serviceUnavailableHandlerException(RuntimeException ex){
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.SERVICE_UNAVAILABLE);
+    }
+
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleGeneralException(Exception ex) {
+    public ResponseEntity<String> UnavailableHandlerException(Exception ex){
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
