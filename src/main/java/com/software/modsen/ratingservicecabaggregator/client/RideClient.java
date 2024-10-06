@@ -47,6 +47,6 @@ public interface RideClient {
             throw new ServiceUnavailableException(String.format(CIRCUIT_BREAKER_IS_OPEN, "ride"));
         }
 
-        throw new ServiceUnavailableException(String.format(SERVICE_UNAVAILABLE, "Passenger"));
+        throw new ServiceUnavailableException(String.format(SERVICE_UNAVAILABLE, "Ride"));
     }
 }

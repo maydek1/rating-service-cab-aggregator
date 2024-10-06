@@ -22,4 +22,9 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> UnavailableHandlerException(Exception ex){
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    @ExceptionHandler(BadRequestException.class)
+    public ResponseEntity<String> BadRequestHandlerException(Exception ex){
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
 }

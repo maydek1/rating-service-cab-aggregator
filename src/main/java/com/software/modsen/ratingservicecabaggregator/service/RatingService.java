@@ -4,6 +4,8 @@ package com.software.modsen.ratingservicecabaggregator.service;
 import com.software.modsen.ratingservicecabaggregator.client.RideClient;
 import com.software.modsen.ratingservicecabaggregator.dto.request.DriverRatingRequest;
 import com.software.modsen.ratingservicecabaggregator.dto.response.RideResponse;
+import com.software.modsen.ratingservicecabaggregator.exception.BadRequestException;
+import com.software.modsen.ratingservicecabaggregator.exception.RatingAlreadyExistException;
 import com.software.modsen.ratingservicecabaggregator.exception.RatingNotFoundException;
 import com.software.modsen.ratingservicecabaggregator.exception.RideNotFoundException;
 import com.software.modsen.ratingservicecabaggregator.model.Rating;
@@ -14,9 +16,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
-import static com.software.modsen.ratingservicecabaggregator.util.ExceptionMessages.RATING_NOT_FOUND;
-import static com.software.modsen.ratingservicecabaggregator.util.ExceptionMessages.RIDE_NOT_FOUND;
+import static com.software.modsen.ratingservicecabaggregator.util.ExceptionMessages.*;
 
 @Service
 @RequiredArgsConstructor
@@ -50,9 +52,14 @@ public class RatingService {
     }
 
     public Rating createRating(Rating rating) {
+        if (rating.getRate() < 1 || rating.getRate() > 5) throw new BadRequestException(String.format(BAD_RATING_REQUEST, rating.getRate()));
+        Optional<Rating> existingRating = ratingRepository.findByRideId(rating.getRideId());
+        if (existingRating.isPresent()) throw new RatingAlreadyExistException(String.format(RATING_ALREADY_EXIST, rating.getRideId()));
+
         ResponseEntity<RideResponse> rideResponse = rideClient.getRide(rating.getRideId());
         if (!rideResponse.hasBody() || rideResponse.getBody() == null)
             throw new RideNotFoundException(String.format(RIDE_NOT_FOUND, rating.getRideId()));
+
         rideClient.updateRating(new DriverRatingRequest(rating.getRideId(), rating.getRate(), null));
         return ratingRepository.save(rating);
     }
